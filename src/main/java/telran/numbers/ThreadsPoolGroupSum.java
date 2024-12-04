@@ -17,5 +17,6 @@ public class ThreadsPoolGroupSum extends ThreadsGroupSum {
             tasks[i] = new FutureTask<>(new OneGroupSum(groups[i]));
             pool.submit(tasks[i]);
         }
+        pool.shutdown();
     }
 }

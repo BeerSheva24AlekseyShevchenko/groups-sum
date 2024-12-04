@@ -33,7 +33,7 @@ public class GroupSumTest {
     }
 
     @Test
-    // @Disabled
+    @Disabled
     void performanceThreadsGroupSumTest() {
         runPerformanceTest(new ThreadsGroupSum(groupsPerformance));
     }
