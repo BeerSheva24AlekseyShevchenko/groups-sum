@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 public class ThreadsPoolGroupSum extends ThreadsGroupSum {
-    private final ExecutorService pool = Executors.newCachedThreadPool();
+    private final ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     public ThreadsPoolGroupSum(int[][] groups) {
         super(groups);
@@ -15,7 +15,7 @@ public class ThreadsPoolGroupSum extends ThreadsGroupSum {
     protected void startTasks(FutureTask<Long>[] tasks) {
         for (int i = 0; i < tasks.length; i++) {
             tasks[i] = new FutureTask<>(new OneGroupSum(groups[i]));
-            pool.submit(tasks[i]);
+            pool.execute(tasks[i]);
         }
         pool.shutdown();
     }
